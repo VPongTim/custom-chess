@@ -1,5 +1,5 @@
 import chess.Position;
-
+import chess.PieceColor;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,6 +8,8 @@ public class Main {
         Position pos2 = new Position(2, 10);
         System.out.println(pos1.isInBounds());
         System.out.println(pos2.isInBounds());
+        PieceColor color = PieceColor.WHITE;
+        System.out.println(color);
     }
     
 }
