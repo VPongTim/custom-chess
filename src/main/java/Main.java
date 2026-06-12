@@ -1,5 +1,6 @@
 import chess.Position;
 import chess.PieceColor;
+import chess.Pawn;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,6 +11,11 @@ public class Main {
         System.out.println(pos2.isInBounds());
         PieceColor color = PieceColor.WHITE;
         System.out.println(color);
+
+        Pawn pwn = new Pawn(PieceColor.WHITE);
+        System.out.println(pwn.getSymbol());
+        Pawn pwn2 = new Pawn(PieceColor.BLACK);
+        System.out.println(pwn2.getSymbol());
     }
     
 }
