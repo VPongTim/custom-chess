@@ -26,6 +26,18 @@ public class Position {
     public String toString() {
         return "Position(row: " + row + ", col: " + col + ")";
     }
+
+
+    //returns true, if the position this is used on is on the chess board, so on the 8x8 grid
+    public boolean isInBounds() {
+        if (row < 0 || row > 7) {
+            return false;
+        }
+        if (col < 0 || col > 7) {
+            return false;
+        }
+        return true;
+    }
 }
 
 
