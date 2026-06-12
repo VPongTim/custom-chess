@@ -21,4 +21,20 @@ public class Board {
         return field[pos.getCol()][pos.getRow()] == null;
     }
 
+    public void printBoard() {
+        for (int i = 0; i < field.length; i++) {
+            for (int j = 0; j < field.length; j++) {
+                Position posCur = new Position(j, i);
+                if (positionIsEmpty(posCur) == true) {
+                    System.out.print(". ");
+                }
+                else {
+                    Piece pc = field[j][i];
+                    System.out.print(pc.getSymbol() + " ");
+                }
+            }
+            System.out.print("\n");
+        }
+    }
+
 }

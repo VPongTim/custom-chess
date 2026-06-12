@@ -6,6 +6,7 @@ import chess.Board;
 public class Main {
     public static void main(String[] args) {
 
+        // checking basic functionality
         Position pos1 = new Position(1, 3);
         Position pos2 = new Position(2, 4);
         System.out.println(pos1.isInBounds());
@@ -25,7 +26,7 @@ public class Main {
         System.out.println(board.positionIsEmpty(pos2));
         System.out.println(board.positionIsEmpty(pos1));
 
-
+        
+        board.printBoard();
     }
-    
 }

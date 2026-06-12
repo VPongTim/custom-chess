@@ -7,7 +7,7 @@ public class Position {
     private int col;
 
     //constructor
-    public Position(int row, int col) {
+    public Position(int col, int row) {
         this.row = row;
         this.col = col;
     }
@@ -24,7 +24,7 @@ public class Position {
     //defines, how an object should be shown as text
     @Override
     public String toString() {
-        return "Position(row: " + row + ", col: " + col + ")";
+        return "Position(row: " + col + ", col: " + row + ")";
     }
 
 
