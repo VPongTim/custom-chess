@@ -32,4 +32,9 @@ public class Bishop extends Piece {
         }
         return false;
     }
+
+    @Override
+    public boolean requiresPathFreeCheck() {
+        return true;
+    }
 }

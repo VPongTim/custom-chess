@@ -14,4 +14,6 @@ public abstract class Piece {
     public abstract String getSymbol();
 
     public abstract boolean moveShapeLegit(Position from, Position to);
+
+    public abstract boolean requiresPathFreeCheck();
 }

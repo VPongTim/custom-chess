@@ -16,9 +16,7 @@ public class Knight extends Piece {
     }
     @Override
     public boolean moveShapeLegit(Position from, Position to) {
-        if (from.getCol() == to.getCol() && from.getRow() == to.getRow()) {
-            return false;
-        }
+        
         int x1 = from.getCol();
         int y1 = from.getRow();
         int x2 = to.getCol();
@@ -30,6 +28,11 @@ public class Knight extends Piece {
         if ((colDiff == 2 && rowDiff == 1) || (colDiff == 1 && rowDiff == 2)) {
             return true;
         }
+        return false;
+    }
+
+    @Override
+    public boolean requiresPathFreeCheck() {
         return false;
     }
 }

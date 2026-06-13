@@ -49,5 +49,7 @@ public class Main {
         Position fMove3 = new Position(1, 2);
         System.out.println(board.movePiece(pos3, fMove3));
         board.printBoard();
+
+        
     }
 }

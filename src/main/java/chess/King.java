@@ -33,4 +33,9 @@ public class King extends Piece {
         }
         return true;
     }
+
+    @Override
+    public boolean requiresPathFreeCheck() {
+        return false;
+    }
 }

@@ -19,4 +19,9 @@ public class Pawn extends Piece {
     public boolean moveShapeLegit(Position from, Position to) {
         return false;
     }
+
+    @Override
+    public boolean requiresPathFreeCheck() {
+        return false;
+    }
 }

@@ -36,4 +36,9 @@ public class Queen extends Piece {
         }
         return false;
     }
+
+    @Override
+    public boolean requiresPathFreeCheck() {
+        return true;
+    }
 }

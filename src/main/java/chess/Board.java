@@ -59,9 +59,53 @@ public class Board {
         if (!movePiece.moveShapeLegit(from, to)) {
             return false;
         }
+        if (movePiece.requiresPathFreeCheck()){
+            if (!pathFree(from, to)) {
+                return false;
+            }
+        }
         field[from.getCol()][from.getRow()] = null;
         field[to.getCol()][to.getRow()] = movePiece;
         return true;
     }
 
+    public boolean pathFree(Position from, Position to) {
+        int xDir;
+        int yDir;
+        if (from.getCol() < to.getCol()) {
+            xDir = 1;
+        }
+        else if (from.getCol() == to.getCol()) {
+            xDir = 0;
+        }
+        else {
+            xDir = -1;
+        }
+        if (from.getRow() < to.getRow()) {
+            yDir = 1;
+        }
+        else if (from.getRow() == to.getRow()) {
+            yDir = 0;
+        }
+        else {
+            yDir = -1;
+        }
+        int x1 = from.getCol();
+        int y1 = from.getRow();
+        int x2 = to.getCol();
+        int y2 = to.getRow();
+
+        
+        int i = x1 + xDir;
+        int j = y1 + yDir;
+        while (i != x2 || j != y2) {
+            Position curPosChecker = new Position(i, j);
+            if (field[curPosChecker.getCol()][curPosChecker.getRow()] != null) {
+                return false;
+            }
+            i += xDir;
+            j += yDir;
+        }
+        return true;
+    }
 }
