@@ -8,6 +8,7 @@ import chess.Bishop;
 import chess.Queen;
 import chess.King;
 
+
 public class Main {
     public static void main(String[] args) {
 
@@ -18,6 +19,7 @@ public class Main {
         Position pos4 = new Position(7, 6);
         Position pos5 = new Position(0, 4);
         Position pos6 = new Position(5, 5);
+        Position newPos = new Position(3, 3);
         
         Pawn pwn = new Pawn(PieceColor.WHITE);
         Rook rk = new Rook(PieceColor.BLACK);
@@ -34,6 +36,16 @@ public class Main {
         board.placePiece(k, pos5);
         board.placePiece(q, pos6);
 
+        board.printBoard();
+
+        board.movePiece(pos5, newPos);
+        board.printBoard();
+
+        System.out.println(board.movePiece(newPos, pos5));
+        board.printBoard();
+        System.out.println(board.movePiece(pos4, pos3));
+        board.printBoard();
+        System.out.println(board.movePiece(newPos, pos5));
         board.printBoard();
     }
 }

@@ -35,6 +35,30 @@ public class Board {
             }
             System.out.print("\n");
         }
+        System.out.print("\n");
+    }
+    //checks if a move is a move is mechanically possible and on the board
+    public boolean movePiece(Position from, Position to) {
+        
+        if (!from.isInBounds() || !to.isInBounds()) {
+            return false;
+        }
+
+        if (field[from.getCol()][from.getRow()] == null) {
+            return false;
+        }
+        
+        Piece destPiece = field[to.getCol()][to.getRow()];
+        Piece movePiece = field[from.getCol()][from.getRow()];
+        if (destPiece != null) {
+            if (destPiece.getColor() == movePiece.getColor()) {
+                return false;
+            }
+        }
+        Piece m = field[from.getCol()][from.getRow()];
+        field[from.getCol()][from.getRow()] = null;
+        field[to.getCol()][to.getRow()] = m;
+        return true;
     }
 
 }
