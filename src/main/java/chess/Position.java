@@ -24,7 +24,7 @@ public class Position {
     //defines, how an object should be shown as text
     @Override
     public String toString() {
-        return "Position(row: " + col + ", col: " + row + ")";
+        return "Position(Column: " + col + ", Row: " + row + ")";
     }
 
 

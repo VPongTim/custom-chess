@@ -22,7 +22,7 @@ public class Board {
     }
 
     public void printBoard() {
-        for (int i = 0; i < field.length; i++) {
+        for (int i = field.length - 1; i >= 0; i--) {
             for (int j = 0; j < field.length; j++) {
                 Position posCur = new Position(j, i);
                 if (positionIsEmpty(posCur) == true) {
