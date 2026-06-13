@@ -15,4 +15,15 @@ public class Rook extends Piece {
             return "r";
         }
     }
+
+    @Override
+    public boolean moveShapeLegit(Position from, Position to) {
+        if (from.getCol() == to.getCol() && from.getRow() == to.getRow()) {
+            return false;
+        }
+        if (from.getCol() == to.getCol() || from.getRow() == to.getRow()) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -38,14 +38,16 @@ public class Main {
 
         board.printBoard();
 
-        board.movePiece(pos5, newPos);
+        Position fMove1 = new Position(0, 4);
+        System.out.println(board.movePiece(pos5, fMove1));
         board.printBoard();
 
-        System.out.println(board.movePiece(newPos, pos5));
+        Position fMove2 = new Position(1, 6);
+        System.out.println(board.movePiece(pos1, fMove2));
         board.printBoard();
-        System.out.println(board.movePiece(pos4, pos3));
-        board.printBoard();
-        System.out.println(board.movePiece(newPos, pos5));
+
+        Position fMove3 = new Position(1, 2);
+        System.out.println(board.movePiece(pos3, fMove3));
         board.printBoard();
     }
 }

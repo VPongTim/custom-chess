@@ -55,9 +55,12 @@ public class Board {
                 return false;
             }
         }
-        Piece m = field[from.getCol()][from.getRow()];
+        // checks if the movement shape is legitimate for that Piecetype
+        if (!movePiece.moveShapeLegit(from, to)) {
+            return false;
+        }
         field[from.getCol()][from.getRow()] = null;
-        field[to.getCol()][to.getRow()] = m;
+        field[to.getCol()][to.getRow()] = movePiece;
         return true;
     }
 

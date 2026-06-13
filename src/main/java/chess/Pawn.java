@@ -14,4 +14,9 @@ public class Pawn extends Piece {
             return "p";
         }
     }
+    // implement later when board logic is more refined
+    @Override
+    public boolean moveShapeLegit(Position from, Position to) {
+        return false;
+    }
 }
