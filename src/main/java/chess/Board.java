@@ -59,6 +59,26 @@ public class Board {
         if (!movePiece.moveShapeLegit(from, to)) {
             return false;
         }
+        // pawn specific can capture-diagonally check
+        if ((movePiece instanceof Pawn) && (Math.abs(from.getCol() - to.getCol()) != 0)) {
+            if (field[to.getCol()][to.getRow()] == null) {
+                return false;
+            } 
+        }
+        else if (((movePiece instanceof Pawn) && (Math.abs(from.getRow() - to.getRow()) == 1)) || ((movePiece instanceof Pawn) && (Math.abs(from.getRow() - to.getRow()) == 2))) {
+            if (field[to.getCol()][to.getRow()] != null) {
+                return false;
+            }
+            if ((movePiece instanceof Pawn) && (Math.abs(from.getRow() - to.getRow()) == 2)) {
+                PieceColor cl = movePiece.getColor();
+                if (cl == PieceColor.WHITE && field[to.getCol()][to.getRow() - 1] != null) {
+                    return false;
+                }
+                else if(cl == PieceColor.BLACK && field[to.getCol()][to.getRow() + 1] != null) {
+                    return false;
+                }
+            }
+        }
         if (movePiece.requiresPathFreeCheck()){
             if (!pathFree(from, to)) {
                 return false;
