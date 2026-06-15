@@ -1,18 +1,26 @@
 package chess;
 
+import java.util.ArrayList;
+
 public class Game {
 
     private Board board;
     private PieceColor currentTurn;
+    private ArrayList<Move> moveHistory;
 
     public Game() {
         board = new Board();
         currentTurn = PieceColor.WHITE;
+        moveHistory = new ArrayList<Move>();
         standardBoardInit();
     }
 
     public Board getBoard() {
         return board;
+    }
+
+    public ArrayList<Move> getMoveHistory() {
+        return moveHistory;
     }
 
     public PieceColor getCurrentTurn() {
@@ -30,6 +38,8 @@ public class Game {
         }
         boolean moveWorked = board.movePiece(from, to);
         if (moveWorked) {
+            Move mv = new Move(from, to);
+            moveHistory.add(mv);
             switchTurn();
         }
         return moveWorked;
@@ -46,9 +56,10 @@ public class Game {
 
     public boolean move(Move move) {
         return move(move.getFrom(), move.getTo());
+
     }
 
-    public void standardBoardInit() {
+    private void standardBoardInit() {
         //set up pawns for both sides
         for (int i = 0; i <= 7; i++) {
             Position curPos = new Position(i, 1);
