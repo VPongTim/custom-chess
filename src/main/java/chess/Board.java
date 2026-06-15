@@ -59,24 +59,9 @@ public class Board {
         if (!movePiece.moveShapeLegit(from, to)) {
             return false;
         }
-        // pawn specific can capture-diagonally check
-        if ((movePiece instanceof Pawn) && (Math.abs(from.getCol() - to.getCol()) != 0)) {
-            if (field[to.getCol()][to.getRow()] == null) {
+        if (movePiece instanceof Pawn) {
+            if (!pawnChecker(movePiece, from, to)) {
                 return false;
-            } 
-        }
-        else if (((movePiece instanceof Pawn) && (Math.abs(from.getRow() - to.getRow()) == 1)) || ((movePiece instanceof Pawn) && (Math.abs(from.getRow() - to.getRow()) == 2))) {
-            if (field[to.getCol()][to.getRow()] != null) {
-                return false;
-            }
-            if ((movePiece instanceof Pawn) && (Math.abs(from.getRow() - to.getRow()) == 2)) {
-                PieceColor cl = movePiece.getColor();
-                if (cl == PieceColor.WHITE && field[to.getCol()][to.getRow() - 1] != null) {
-                    return false;
-                }
-                else if(cl == PieceColor.BLACK && field[to.getCol()][to.getRow() + 1] != null) {
-                    return false;
-                }
             }
         }
         if (movePiece.requiresPathFreeCheck()){
@@ -125,6 +110,29 @@ public class Board {
             }
             i += xDir;
             j += yDir;
+        }
+        return true;
+    }
+    // pawn specific helper method for movePiece()
+    private boolean pawnChecker(Piece movePiece, Position from, Position to) {
+        if ((Math.abs(from.getCol() - to.getCol()) != 0)) {
+            if (field[to.getCol()][to.getRow()] == null) {
+                return false;
+            } 
+        }
+        else if (((Math.abs(from.getRow() - to.getRow()) == 1)) || ((Math.abs(from.getRow() - to.getRow()) == 2))) {
+            if (field[to.getCol()][to.getRow()] != null) {
+                return false;
+            }
+            if ((Math.abs(from.getRow() - to.getRow()) == 2)) {
+                PieceColor cl = movePiece.getColor();
+                if (cl == PieceColor.WHITE && field[to.getCol()][to.getRow() - 1] != null) {
+                    return false;
+                }
+                else if(cl == PieceColor.BLACK && field[to.getCol()][to.getRow() + 1] != null) {
+                    return false;
+                }
+            }
         }
         return true;
     }
