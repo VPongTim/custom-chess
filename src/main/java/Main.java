@@ -8,17 +8,23 @@ import chess.Bishop;
 import chess.Queen;
 import chess.King;
 import chess.Game;
+import chess.Move;
+
 
 public class Main {
     public static void main(String[] args) {
         Game game = new Game();
 
-        game.getBoard().printBoard();
+        Move move1 = new Move(new Position(4, 1), new Position(4, 3));
+        System.out.println(move1);
+        System.out.println(game.move(move1));          // expected true
+        System.out.println(game.getCurrentTurn());     // expected BLACK
 
-        System.out.println(game.move(new Position(4, 1), new Position(4, 3))); // white pawn e2-ish to e4-ish
-        game.getBoard().printBoard();
+        Move move2 = new Move(new Position(4, 6), new Position(4, 4));
+        System.out.println(move2);
+        System.out.println(game.move(move2));          // expected true
+        System.out.println(game.getCurrentTurn());     // expected WHITE
 
-        System.out.println(game.move(new Position(4, 6), new Position(4, 4))); // black pawn e7-ish to e5-ish
-        game.getBoard().printBoard(); 
+        game.getBoard().printBoard();
     }
 }

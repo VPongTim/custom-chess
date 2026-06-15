@@ -44,6 +44,10 @@ public class Game {
         }
     }
 
+    public boolean move(Move move) {
+        return move(move.getFrom(), move.getTo());
+    }
+
     public void standardBoardInit() {
         //set up pawns for both sides
         for (int i = 0; i <= 7; i++) {
