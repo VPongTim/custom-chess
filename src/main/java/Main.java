@@ -9,41 +9,95 @@ import chess.Queen;
 import chess.King;
 import chess.Game;
 import chess.Move;
-
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=== Move History Tests ===");
-
         Game game = new Game();
-
-        System.out.println("Initial turn, expected WHITE: " + game.getCurrentTurn());
-        System.out.println("Initial history size, expected 0: " + game.getMoveHistory().size());
-
-        // Successful white move
-        Move move1 = new Move(new Position(4, 1), new Position(4, 3));
-        System.out.println("White pawn move e2-ish to e4-ish, expected true: " + game.move(move1));
-        System.out.println("Turn after successful white move, expected BLACK: " + game.getCurrentTurn());
-        System.out.println("History size, expected 1: " + game.getMoveHistory().size());
-
-        // Failed move: white tries to move again while it is black's turn
-        Move illegalMove = new Move(new Position(3, 1), new Position(3, 3));
-        System.out.println("White tries to move again, expected false: " + game.move(illegalMove));
-        System.out.println("Turn after failed move, expected BLACK: " + game.getCurrentTurn());
-        System.out.println("History size after failed move, expected 1: " + game.getMoveHistory().size());
-
-        // Successful black move
-        Move move2 = new Move(new Position(4, 6), new Position(4, 4));
-        System.out.println("Black pawn move e7-ish to e5-ish, expected true: " + game.move(move2));
-        System.out.println("Turn after successful black move, expected WHITE: " + game.getCurrentTurn());
-        System.out.println("History size, expected 2: " + game.getMoveHistory().size());
-
-        System.out.println("\nMove history:");
-        for (Move move : game.getMoveHistory()) {
-            System.out.println(move);
-        }
-
-        System.out.println("\nFinal board:");
         game.getBoard().printBoard();
+
+        while (true) {
+            System.out.println("Current turn: " + game.getCurrentTurn());
+
+            Move move = userInput();
+
+            boolean moveWorked = game.move(move);
+
+            if (!moveWorked) {
+                System.out.println("Illegal move. Try again.");
+            }
+
+            game.getBoard().printBoard();
+        }
+    }
+
+    static Move userInput() {
+        boolean inputCorrect = false;
+        Scanner sc = new Scanner(System.in);
+        String moveString = "";
+        while (!inputCorrect) {
+            System.out.print("Enter Move: ");
+            moveString = sc.nextLine();
+            if (moveString.length() != 5) {
+                System.out.println("Invalid input.");
+                continue;
+            }
+            char[] ca = moveString.toCharArray();
+            if (ca[0] != 'a' && ca[0] != 'b' && ca[0] != 'c' && ca[0] != 'd' && ca[0] != 'e' && ca[0] != 'f' && ca[0] != 'g' && ca[0] != 'h') {
+                System.out.println("Invalid input.");
+                continue;
+            }
+            if (ca[3] != 'a' && ca[3] != 'b' && ca[3] != 'c' && ca[3] != 'd' && ca[3] != 'e' && ca[3] != 'f' && ca[3] != 'g' && ca[3] != 'h') {
+                System.out.println("Invalid input.");
+                continue;
+            }
+            if (ca[1] != '1' && ca[1] != '2' && ca[1] != '3' && ca[1] != '4' && ca[1] != '5' && ca[1] != '6' && ca[1] != '7' && ca[1] != '8') {
+                System.out.println("Invalid input.");
+                continue;
+            }
+            if (ca[4] != '1' && ca[4] != '2' && ca[4] != '3' && ca[4] != '4' && ca[4] != '5' && ca[4] != '6' && ca[4] != '7' && ca[4] != '8') {
+                System.out.println("Invalid input.");
+                continue;
+            }
+            if (ca[2] != ' ') {
+                System.out.println("Invalid input.");
+                continue;
+            }
+            inputCorrect = true;
+        }
+        int x1 = 0;
+        int y1 = 0;
+        int x2 = 0;
+        int y2 = 0;
+
+        char[] ca = moveString.toCharArray();
+        String helpString = "abcdefgh";
+        String helpString2 = "12345678";
+        char[] helperArray = helpString.toCharArray();
+        char[] helperArray2 = helpString2.toCharArray();
+
+        // this could be done more elegantly with conversion via subtraction
+        for (int i = 0; i < helperArray.length; i++) {
+            if (ca[0] == helperArray[i]) {
+                x1 = i;
+            }
+        }
+        for (int i = 0; i < helperArray.length; i++) {
+            if (ca[3] == helperArray[i]) {
+                x2 = i;
+            }
+        }
+        for (int i = 0; i < helperArray2.length; i++) {
+            if (ca[1] == helperArray2[i]) {
+                y1 = i;
+            }
+        }
+        for (int i = 0; i < helperArray2.length; i++) {
+            if (ca[4] == helperArray2[i]) {
+                y2 = i;
+            }
+        }
+        Move parsedMove = new Move(new Position(x1, y1), new Position(x2, y2));
+        return parsedMove;
     }
 }
