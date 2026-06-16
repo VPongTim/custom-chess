@@ -43,19 +43,19 @@ public class Main {
                 continue;
             }
             char[] ca = moveString.toCharArray();
-            if (ca[0] != 'a' && ca[0] != 'b' && ca[0] != 'c' && ca[0] != 'd' && ca[0] != 'e' && ca[0] != 'f' && ca[0] != 'g' && ca[0] != 'h') {
+            if (ca[0] < 'a' || ca[0] > 'h') {
                 System.out.println("Invalid input.");
                 continue;
             }
-            if (ca[3] != 'a' && ca[3] != 'b' && ca[3] != 'c' && ca[3] != 'd' && ca[3] != 'e' && ca[3] != 'f' && ca[3] != 'g' && ca[3] != 'h') {
+            if (ca[3] < 'a' || ca[3] > 'h') {
                 System.out.println("Invalid input.");
                 continue;
             }
-            if (ca[1] != '1' && ca[1] != '2' && ca[1] != '3' && ca[1] != '4' && ca[1] != '5' && ca[1] != '6' && ca[1] != '7' && ca[1] != '8') {
+            if (ca[1] < '1' || ca[1] > '8') {
                 System.out.println("Invalid input.");
                 continue;
             }
-            if (ca[4] != '1' && ca[4] != '2' && ca[4] != '3' && ca[4] != '4' && ca[4] != '5' && ca[4] != '6' && ca[4] != '7' && ca[4] != '8') {
+            if (ca[4] < '1' || ca[4] > '8') {
                 System.out.println("Invalid input.");
                 continue;
             }
